@@ -1,23 +1,41 @@
 import { Link } from "gatsby"
-import PropTypes from "prop-types"
 import React from "react"
+import { css } from "@emotion/core"
 
-const Header = ({ siteTitle }) => (
-  <header>
-    <div>
+const Header = () => (
+  <header
+    css={css`
+      margin: 0 4%;
+      width: 92%;
+      position: absolute;
+      top: 0;
+    `}
+  >
+    <div
+      css={css`
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        align-items: center;
+      `}
+    >
       <h1>
-        <Link to="/">{siteTitle}</Link>
+        <Link to="/">logo</Link>
       </h1>
+      <nav
+        css={css`
+          flex: 0 0 40%;
+          display: flex;
+          flex-flow: row wrap;
+          align-items: center;
+          justify-content: space-between;
+        `}
+      >
+        <div>Blog</div>
+        <div>Contact</div>
+      </nav>
     </div>
   </header>
 )
-
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
-
-Header.defaultProps = {
-  siteTitle: ``,
-}
 
 export default Header

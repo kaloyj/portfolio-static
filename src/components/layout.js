@@ -1,37 +1,72 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import React from "react"
 import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
+import { Global, css } from "@emotion/core"
 
 import Header from "./header"
-import "./layout.css"
+import useSiteMetadata from "../hooks/useSiteMetadata"
 
+export const COLOR_SCHEME = {
+  darkBlue: "#101D42",
+}
 const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
+  const { title } = useSiteMetadata()
 
   return (
     <>
-      <Header siteTitle={data.site.siteMetadata.title} />
+      <Global
+        styles={css`
+          * {
+            box-sizing: border-box;
+            margin: 0;
+          }
+
+          html,
+          body {
+            margin: 0;
+            font-family: "DM Sans", -apple-system, BlinkMacSystemFont,
+              "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+            > div {
+              margin-top: 0;
+            }
+
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+              color: #222;
+              line-height: 1.1;
+
+              + * {
+                margin-top: 0.5rem;
+              }
+            }
+          }
+        `}
+      ></Global>
+      <Header siteTitle={title} />
       <div>
-        <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
+        <main
+          css={css`
+            margin: 0 4%;
+            min-height: 85vh;
+          `}
+        >
+          {children}
+        </main>
+        <footer
+          css={css`
+            background-color: ${COLOR_SCHEME.darkBlue};
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 15vh;
+          `}
+        >
+          © {new Date().getFullYear()} Carlo Janea
         </footer>
       </div>
     </>
