@@ -38,6 +38,8 @@ const Layout = ({ children }) => {
             h6 {
               color: #222;
               line-height: 1.1;
+              font-family: "Hammersmith One", -apple-system, BlinkMacSystemFont,
+                "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
               + * {
                 margin-top: 0.5rem;
@@ -46,29 +48,28 @@ const Layout = ({ children }) => {
           }
         `}
       ></Global>
-      <Header siteTitle={title} />
-      <div>
-        <main
-          css={css`
-            margin: 0 4%;
-            min-height: 85vh;
-          `}
-        >
-          {children}
-        </main>
-        <footer
-          css={css`
-            background-color: ${COLOR_SCHEME.darkBlue};
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 15vh;
-          `}
-        >
-          © {new Date().getFullYear()} Carlo Janea
-        </footer>
-      </div>
+      <Header></Header>
+      <main
+        css={css`
+          margin: 0;
+          min-height: 85vh;
+          display: flex;
+        `}
+      >
+        {children}
+      </main>
+      <footer
+        css={css`
+          background-color: ${COLOR_SCHEME.darkBlue};
+          color: white;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 15vh;
+        `}
+      >
+        © {new Date().getFullYear()} Carlo Janea
+      </footer>
     </>
   )
 }
